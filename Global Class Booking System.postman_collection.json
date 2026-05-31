@@ -1,0 +1,960 @@
+{
+	"info": {
+		"_postman_id": "4721a54b-983b-4536-b7a8-bbcce9835374",
+		"name": "Global Class Booking System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "51564754",
+		"_collection_link": "https://ajay-pendem-9712857.postman.co/workspace/Ajay-Pendem's-Workspace~5ce4bc03-9503-4b12-8e29-17d14bc504e2/collection/51564754-4721a54b-983b-4536-b7a8-bbcce9835374?action=share&source=collection_link&creator=51564754"
+	},
+	"item": [
+		{
+			"name": "Setup APIs",
+			"item": [
+				{
+					"name": "Create Teacher",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"John Smith\",\n  \"email\": \"john.new@example.com\",\n  \"timezone\": \"America/New_York\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/teachers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Parent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Ankita Parent\",\n  \"email\": \"ankita.new@example.com\",\n  \"timezone\": \"Asia/Kolkata\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/parents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"parents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Course",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Java Spring Boot\",\n  \"description\": \"Backend development course using Spring Boot\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/courses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid timezone",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Ravi Kumar\",\n  \"email\": \"ravi.teacher@example.com\",\n  \"timezone\": \"Asia/Kolkat\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/teachers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "invalid email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Bad Email Teacher\",\n  \"email\": \"bad-email\",\n  \"timezone\": \"Asia/Kolkata\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/teachers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "missing title",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"description\": \"Course without title\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/courses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"courses"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teacher APIs",
+			"item": [
+				{
+					"name": "create offer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"courseId\": 4,\n  \"teacherId\": 2,\n  \"title\": \"Art Morning Batch\",\n  \"timezone\": \"Asia/Kolkata\",\n  \"capacity\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/teachers/offerings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"offerings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "course not found",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"courseId\": 999,\n  \"teacherId\": 1,\n  \"title\": \"Invalid Course Batch\",\n  \"timezone\": \"Asia/Kolkata\",\n  \"capacity\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/teachers/offerings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"offerings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "teacher not found",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"courseId\": 1,\n  \"teacherId\": 999,\n  \"title\": \"Invalid Teacher Batch\",\n  \"timezone\": \"Asia/Kolkata\",\n  \"capacity\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/teachers/offerings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"offerings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "capacity zero",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"courseId\": 1,\n  \"teacherId\": 1,\n  \"title\": \"Invalid Capacity Batch\",\n  \"timezone\": \"Asia/Kolkata\",\n  \"capacity\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/teachers/offerings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"offerings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Sessions to Offering",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sessions\": [\n    {\n      \"startTime\": \"2026-08-01T18:00:00\",\n      \"endTime\": \"2026-08-01T19:00:00\"\n    },\n    {\n      \"startTime\": \"2026-08-08T18:00:00\",\n      \"endTime\": \"2026-08-08T19:00:00\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/teachers/offerings/1/sessions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"offerings",
+								"1",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Sessions to Offering Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sessions\": [\n    {\n      \"startTime\": \"2026-08-01T18:00:00\",\n      \"endTime\": \"2026-08-01T19:00:00\"\n    },\n    {\n      \"startTime\": \"2026-08-08T18:00:00\",\n      \"endTime\": \"2026-08-08T19:00:00\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/teachers/offerings/1/sessions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"offerings",
+								"1",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "boundary sessions allowed",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sessions\": [\n    {\n      \"startTime\": \"2026-09-01T10:00:00\",\n      \"endTime\": \"2026-09-01T11:00:00\"\n    },\n    {\n      \"startTime\": \"2026-09-01T11:00:00\",\n      \"endTime\": \"2026-09-01T12:00:00\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/teachers/offerings/9/sessions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"offerings",
+								"9",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "offering not found",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sessions\": [\n    {\n      \"startTime\": \"2026-08-01T18:00:00\",\n      \"endTime\": \"2026-08-01T19:00:00\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/teachers/offerings/999/sessions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"offerings",
+								"999",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "end time before start time",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sessions\": [\n    {\n      \"startTime\": \"2026-08-01T19:00:00\",\n      \"endTime\": \"2026-08-01T18:00:00\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/teachers/offerings/9/sessions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"offerings",
+								"9",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "session in past",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sessions\": [\n    {\n      \"startTime\": \"2026-04-01T10:00:00\",\n      \"endTime\": \"2026-04-01T11:00:00\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/teachers/offerings/9/sessions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"offerings",
+								"9",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sessions overlap in same request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sessions\": [\n    {\n      \"startTime\": \"2026-08-01T10:00:00\",\n      \"endTime\": \"2026-08-01T11:00:00\"\n    },\n    {\n      \"startTime\": \"2026-08-01T10:30:00\",\n      \"endTime\": \"2026-08-01T11:30:00\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/teachers/offerings/9/sessions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"offerings",
+								"9",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "teacher already has session",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sessions\": [\n    {\n      \"startTime\": \"2026-07-11T18:30:00\",\n      \"endTime\": \"2026-07-11T19:30:00\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/teachers/offerings/2/sessions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"offerings",
+								"2",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "teacher already has session Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sessions\": [\n    {\n      \"startTime\": \"2026-07-11T18:30:00\",\n      \"endTime\": \"2026-07-11T19:30:00\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/teachers/offerings/2/sessions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"offerings",
+								"2",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Teacher Upcoming Offerings",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sessions\": [\n    {\n      \"startTime\": \"2026-08-01T18:00:00\",\n      \"endTime\": \"2026-08-01T19:00:00\"\n    },\n    {\n      \"startTime\": \"2026-08-08T18:00:00\",\n      \"endTime\": \"2026-08-08T19:00:00\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/teachers/1/offerings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"1",
+								"offerings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "teacher with Indian timezone",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sessions\": [\n    {\n      \"startTime\": \"2026-08-01T18:00:00\",\n      \"endTime\": \"2026-08-01T19:00:00\"\n    },\n    {\n      \"startTime\": \"2026-08-08T18:00:00\",\n      \"endTime\": \"2026-08-08T19:00:00\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/teachers/2/offerings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"2",
+								"offerings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "teacher not found",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sessions\": [\n    {\n      \"startTime\": \"2026-08-01T18:00:00\",\n      \"endTime\": \"2026-08-01T19:00:00\"\n    },\n    {\n      \"startTime\": \"2026-08-08T18:00:00\",\n      \"endTime\": \"2026-08-08T19:00:00\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/teachers/99/offerings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"99",
+								"offerings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Parent APIs",
+			"item": [
+				{
+					"name": "Get Available Offerings for Parent",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "excludes already booked offerings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/parents/1/offerings/available",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"parents",
+								"1",
+								"offerings",
+								"available"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "parent not found",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Book Offering success",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/parents/3/offerings/2/bookings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"parents",
+								"3",
+								"offerings",
+								"2",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "boundary no-conflict booking",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/parents/1/offerings/2/bookings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"parents",
+								"1",
+								"offerings",
+								"2",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "overlapping booking",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/parents/1/offerings/11/bookings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"parents",
+								"1",
+								"offerings",
+								"11",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "capacity full",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/parents/3/offerings/5/bookings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"parents",
+								"3",
+								"offerings",
+								"5",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "draft offering",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/parents/2/offerings/12/bookings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"parents",
+								"2",
+								"offerings",
+								"12",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "in-progress offering",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/parents/2/offerings/6/bookings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"parents",
+								"2",
+								"offerings",
+								"6",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "completed offering",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/parents/2/offerings/7/bookings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"parents",
+								"2",
+								"offerings",
+								"7",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cancelled offering",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/parents/2/offerings/8/bookings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"parents",
+								"2",
+								"offerings",
+								"8",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "parent not found",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/parents/20/offerings/8/bookings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"parents",
+								"20",
+								"offerings",
+								"8",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Parent Bookings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/parents/1/bookings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"parents",
+								"1",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "parent with no bookings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/parents/4/bookings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"parents",
+								"4",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
